@@ -10,16 +10,7 @@
 #define _SHOWABLE_H_
 
 #include <iostream>
-#include <exception>
-
-class ShowException : public std::exception
-{
-    public:
-        virtual const char* what() const throw()
-        {
-            return "Can't show Show typeclass";
-        }
-};
+#include "Exceptions.h"
 
 class Showable
 {

@@ -9,16 +9,7 @@
 #ifndef _MONAD_H_
 #define _MONAD_H_
 
-#include <exception>
-
-class NotImplementedError : public std::exception
-{
-    public:
-        virtual const char* what() const throw()
-        {
-            return "Can't operate on Monad typeclass";
-        }
-};
+#include "Exceptions.h"
 
 template <typename A>
 class Monad
