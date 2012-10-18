@@ -12,11 +12,11 @@
 #include <iostream>
 #include "Showable.h"
 
-class MyString : public Showable
+class String : public Showable
 {
     public:
-        MyString(const std::string& tmpStr) : str(tmpStr) {}
-        virtual ~MyString(void) {}
+        String(const std::string& tmpStr) : str(tmpStr) {}
+        virtual ~String(void) {}
         std::string Show(void) { return this->str; }
 
     private:

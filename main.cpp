@@ -12,9 +12,9 @@
 
 int main(int argc, char** argv)
 {
-    MyString str("Test");
-    Maybe<MyString> test(str);
-    Maybe<MyString> test2;
+    String str("Test");
+    Maybe<String> test(str);
+    Maybe<String> test2;
 
     std::cout << test << std::endl;
     std::cout << test2 << std::endl;
