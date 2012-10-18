@@ -14,8 +14,9 @@
 class Enum
 {
     public:
-        virtual Enum Succ(void) { throw NotImplementedError(); }
-        virtual Enum Pred(void) { throw NotImplementedError(); }
+        virtual void Succ(void) { throw NotImplementedError(); }
+        virtual void Pred(void) { throw NotImplementedError(); }
+        virtual int FromEnum(void) { throw NotImplementedError(); }
 };
 
 #endif

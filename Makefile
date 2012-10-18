@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.cpp Showable.cpp String.cpp Monad.cpp Maybe.cpp Enum.cpp
+SOURCES=main.cpp Showable.cpp String.cpp Monad.cpp Maybe.cpp Enum.cpp Natural.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hascell
 BINDIR=build/
