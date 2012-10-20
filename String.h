@@ -15,6 +15,7 @@
 class String : public Showable
 {
     public:
+        String() : str("") {}
         String(const std::string& tmpStr) : str(tmpStr) {}
         virtual ~String(void) {}
         std::string Show(void) { return this->str; }
