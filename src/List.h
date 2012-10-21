@@ -60,6 +60,7 @@
 #include <string>
 #include <sstream>
 #include "Exceptions.h"
+#include "Monad.h"
 #include "Showable.h"
 
 template <typename A>
@@ -134,6 +135,12 @@ class List : public Showable
             }
 
         }
+
+        inline bool isEmpty() const
+        {
+            return (head == NULL);
+        }
+        
 
         A first() const
         {
@@ -226,23 +233,21 @@ class List : public Showable
             }
         }
 
-        List<A> append(List<A> list)
+        List<A> append(List<A> list) const
         {
             if(isEmpty())
                 return list;
             else
-                List<A>(first(), rest().append(list));
+                return List<A>(first(), rest().append(list));
         }
 
-        void appendD(List<A> list)
+        void appendD(List<A>& list)
         {
-            if(isEmpty())
-            {
-                head = list.head;
+            if(list.isEmpty())
                 return;
-            }
-            Node<A>* prev = NULL;
+
             Node<A>* curr = head;
+            Node<A>* prev = NULL;
             while(curr)
             {
                 prev = curr;
@@ -251,14 +256,10 @@ class List : public Showable
             if(prev)
                 prev->next = list.head;
             else
-                head->next = list.head;
+                head = list.head;
+            list.head = NULL;
         }
 
-        inline bool isEmpty() const
-        {
-            return (head == NULL);
-        }
-        
         template <typename B, typename Function>
         List<B> map(Function f) const
         {
@@ -339,7 +340,7 @@ class List : public Showable
                 prev = it;
             }
         }
-        
+
         template <typename B, typename Function>
         B foldl(Function f, B bVal) const
         {
@@ -378,6 +379,19 @@ class List : public Showable
             return size;
         }
 
+        A operator[] (int n)
+        {
+            Node<A>* thisIt = head;
+            while((n--) && thisIt)
+            {
+                thisIt = thisIt->next;
+            }
+            if(n > 0)
+                throw EmptyListError();
+            else
+                return thisIt->value;
+        }
+        
         std::string Show(void)
         {
             std::ostringstream os;
@@ -394,19 +408,19 @@ class List : public Showable
             return os.str();
         }
 
-        A operator[] (int n)
+        /*
+        static List<A> inject(A val)
         {
-            Node<A>* thisIt = head;
-            while((n--) && thisIt)
-            {
-                thisIt = thisIt->next;
-            }
-            if(n > 0)
-                throw EmptyListError();
-            else
-                return thisIt->value;
+            return List<A>(val);
         }
-        
+
+        template <typename B>
+        List<B> bind(Function f) const
+        {
+            return map(f).concat();
+        }
+        */
+
         
     private:
 
