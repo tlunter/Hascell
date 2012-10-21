@@ -12,6 +12,8 @@ int main()
     List<String> list(str, List<String>(str2, List<String>(str3)));
     std::cout << list << std::endl;
     str = list[2];
-    std::cout << str << std::endl   ;
+    std::cout << str << std::endl;
+    List<String> list2 = list.reverse();
+    std::cout << list2 << std::endl; 
     return 0;
 }

@@ -173,7 +173,7 @@ class List : public Showable
             return val;
         }
 
-        A last()
+        A last() const
         {
             if(isEmpty())
                 throw EmptyListError();
@@ -192,7 +192,6 @@ class List : public Showable
                 return List<A>();
             else
                 return List<A>(first(), rest().butLast());
-
         }
 
         A butLastD()
@@ -276,6 +275,29 @@ class List : public Showable
                 it->value = (*f)(tempVal);
                 it = it->next;
             }
+        }
+
+        List<A> reverse() const
+        {
+            if(isEmpty())
+                return List<A>();
+            else
+                return List<A>(last(), butLast().reverse());
+        }
+
+        void reverseD()
+        {
+            Node<A>* prev = NULL;
+            Node<A>* curr = head;
+            Node<A>* temp = NULL;
+            while(curr)
+            {
+                temp = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = temp;
+            }
+            head = prev;
         }
 
         template <typename Function>
