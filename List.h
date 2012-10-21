@@ -223,7 +223,34 @@ class List : public Showable
             }
         }
 
-        
+        List<A> append(List<A> list)
+        {
+            if(isEmpty())
+                return list;
+            else
+                List<A>(first(), rest().append(list));
+        }
+
+        void appendD(List<A> list)
+        {
+            if(isEmpty())
+            {
+                head = list.head;
+                return;
+            }
+            Node<A>* prev = NULL;
+            Node<A>* curr = head;
+            while(curr)
+            {
+                prev = curr;
+                curr = curr->next;
+            }
+            if(prev)
+                prev->next = list.head;
+            else
+                head->next = list.head;
+        }
+
         inline bool isEmpty() const
         {
             return (head == NULL);
