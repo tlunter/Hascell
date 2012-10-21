@@ -12,6 +12,21 @@
 #include "Natural.h"
 #include "List.h"
 
+List<int> quickSort(List<int> xs)
+{
+    if(xs.isEmpty())
+        return List<int>();
+    int piv = xs.restD();
+    auto isLessThan    = [piv](int y) -> bool { return y <  piv; };
+    auto isGreaterThan = [piv](int y) -> bool { return y >= piv; };
+    return xs.filter(&isLessThan).append(List<int>(piv, xs.filter(&isGreaterThan)));
+}
+
+void printInt(int x)
+{
+    std::cout << x << " ";
+}
+
 int main(int argc, char** argv)
 {
     /*
@@ -44,10 +59,15 @@ int main(int argc, char** argv)
 	List<String> list2 = list.reverse();
 	std::cout << list2 << std::endl; 
 
+
     list2.appendD(list);
 	std::cout << list2 << std::endl; 
     std::cout << list  << std::endl;
 
+    List<int> xs(2, List<int>(3, List<int>(1)));
+    std::cout << xs << std::endl;
+    List<int> ys = quickSort(xs);
+    std::cout << ys << std::endl;
+
     return 0;
 }
-

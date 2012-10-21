@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -std=gnu++0x
 LDFLAGS=
 SRCDIR=src
 OBJDIR=obj

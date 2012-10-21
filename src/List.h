@@ -124,6 +124,13 @@ class List : public Showable
             clear();
         }
 
+        void cons(A val)
+        {
+            Node<A>* oldHead = head;
+            head = new Node<A>(val);
+            head->next = oldHead;
+        }
+
         void clear()
         {
             Node<A>* temp;
@@ -399,7 +406,7 @@ class List : public Showable
             os << '[';
             while(thisIt)
             {
-                os << thisIt->value.Show();
+                os << thisIt->value;
                 thisIt = thisIt->next;
                 if(thisIt)
                     os << ',';
