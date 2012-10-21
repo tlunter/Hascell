@@ -10,7 +10,8 @@
 
 void Natural::Succ(void)
 {
-	val = new Natural(*val);
+    Natural *curr = new Natural(*val);
+    val = curr;
 }
 
 void Natural::Pred(void)

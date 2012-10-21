@@ -13,12 +13,14 @@
 #include <sstream>
 #include "Enum.h"
 #include "Showable.h"
+#include "Maybe.h"
 
 class Natural : public Enum, public Showable
 {
 	public:
 		Natural(void) { val = NULL; }
 		Natural(Natural& tmpVal) { val = &tmpVal; }
+        ~Natural(void) { delete val; }
 
 		void Succ(void);
 		void Pred(void);
@@ -27,7 +29,7 @@ class Natural : public Enum, public Showable
 		std::string Show(void);
 
 	private:
-		Natural *val;
+		Natural* val;
 };
 
 #endif

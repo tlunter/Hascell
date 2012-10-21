@@ -21,6 +21,27 @@ class Maybe : public Monad<A>, public Showable
         Maybe(void) { val = NULL; }
         Maybe(A tmpVal) { val = new A(tmpVal); }
         ~Maybe() { delete val; }
+        A FromJust()
+        {
+            if (val == NULL)
+            {
+                //throw Error();
+            }
+            else
+            {
+                return *val;
+            }
+        }
+
+        bool IsJust()
+        {
+            return (val != NULL);
+        }
+
+        bool IsNothing()
+        {
+            return (val == NULL);
+        }
 
         template <typename Func, typename B>
         Maybe<B> Bind(Func func)
@@ -30,7 +51,6 @@ class Maybe : public Monad<A>, public Showable
             else
                 return Maybe<B>();
         }
-
         static Maybe<A> Inject(A tmpVal) { return Maybe<A>(tmpVal); }
 
         std::string Show(void)
