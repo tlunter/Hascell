@@ -1,21 +1,23 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=main.cpp Showable.cpp String.cpp Monad.cpp Maybe.cpp Enum.cpp Natural.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
+SRCDIR=src
+OBJDIR=obj
+BINDIR=build
+SOURCES=$(wildcard $(SRCDIR)/*.cpp)
+OBJECTS=$(patsubst $(SRCDIR)%.cpp, $(OBJDIR)%.o, $(SOURCES))
 EXECUTABLE=hascell
-BINDIR=build/
 
 all: out $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $(BINDIR)$@
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $(BINDIR)/$@
 
-.cpp.o:
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) $< -o $@
 
 out:
-	mkdir -p $(BINDIR)
+	mkdir -p $(SRCDIR) $(OBJDIR) $(BINDIR)
 
 clean:
-	rm -rf *.o hascell
+	rm -rf $(OBJDIR)/*.o $(BINDIR)/hascell

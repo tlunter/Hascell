@@ -19,6 +19,7 @@ class String : public Showable
         String(const std::string& tmpStr) : str(tmpStr) {}
         virtual ~String(void) {}
         std::string Show(void) { return this->str; }
+        int Length(void) { return this->str.length(); }
 
     private:
         std::string str;
