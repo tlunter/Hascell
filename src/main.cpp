@@ -7,6 +7,7 @@
  */
 
 #include <iostream>
+#include "Tuple.h"
 #include "String.h"
 #include "Maybe.h"
 #include "Natural.h"
@@ -68,6 +69,9 @@ int main(int argc, char** argv)
     std::cout << xs << std::endl;
     List<int> ys = quickSort(xs);
     std::cout << ys << std::endl;
+
+    Tuple<int, char> tup(3, 'a');
+    std::cout << tup << '\n';
 
     return 0;
 }
