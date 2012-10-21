@@ -2,4 +2,5 @@
 *.gch
 *.o
 build/*
+obj/*
 main.cpp
