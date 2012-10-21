@@ -17,7 +17,17 @@
  *     |-------------------|--------------------------------------------------|
  *     |last()             | Returns the last value in the list.              |
  *     |-------------------|--------------------------------------------------|
+ *     |append(List<A>)    | Returns the specified list appended to the       |
+ *     |                   | the current list.                                |
+ *     |-------------------|--------------------------------------------------|
+ *     |clear()            | Deletes all of the values from the list.         |
+ *     |-------------------|--------------------------------------------------|
+ *     |reverse()          | Returns the list in reverse order.               |
+ *     |-------------------|--------------------------------------------------|
  *     |length()           | Returns the length of the list.                  |
+ *     |-------------------|--------------------------------------------------|
+ *     |[int]              | Returns the value at the specified element in the|
+ *     |                   | list.                                            |
  *     |-------------------|--------------------------------------------------|
  *     |butLast()          | Returns a list without the last element          |
  *     |-------------------|--------------------------------------------------|
@@ -34,6 +44,9 @@
  *     |                   | (B -> A -> B). This function returns the last    |
  *     |                   | B value that the function returns, or the passed-|
  *     |                   | in B value if  the list is empty.                |
+ *     |-------------------|--------------------------------------------------|
+ *     |foldr(Function, B) | Similar to foldr, but from the right instead of  |
+ *     |                   | the left.                                        |
  *     |___________________|__________________________________________________|
  * 
  * Author: Tom Hulihan
@@ -349,6 +362,15 @@ class List : public Showable
                 bVal = (*f)(tempAVal, tempBVal);
             }
             return bVal;
+        }
+
+        template <typename B, typename Function>
+        B foldr(Function f, B bVal) const
+        {
+            if(isEmpty())
+                return bVal;
+            else
+                return (*f)(first(), rest().foldr(f, bVal));
         }
 
         
