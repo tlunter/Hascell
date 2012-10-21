@@ -29,5 +29,14 @@ class ShowException : public std::exception
         }
 };
 
+class EmptyListError : public std::exception
+{
+    public:
+        virtual const char* what() const throw()
+        {
+            return "error: empty list.";
+        }
+};
+
 #endif
 

@@ -56,20 +56,11 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-#include <exception>
 #include <stdlib.h>
 #include <string>
 #include <sstream>
+#include "Exceptions.h"
 #include "Showable.h"
-
-class EmptyListError : public std::exception
-{
-    public:
-        virtual const char* what() const throw()
-        {
-            return "error: empty list.";
-        }
-};
 
 template <typename A>
 class List : public Showable
