@@ -4,7 +4,6 @@
  *
  * Created on October 21, 2011
  * Author: Tom Hulihan
- * 
  **/
 #ifndef _TUPLE_H_
 #define _TUPLE_H_
