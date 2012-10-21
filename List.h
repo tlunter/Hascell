@@ -360,6 +360,7 @@ class List : public Showable
                 tempAVal = it->value;
                 tempBVal = bVal;
                 bVal = (*f)(tempAVal, tempBVal);
+                it = it->next;
             }
             return bVal;
         }
